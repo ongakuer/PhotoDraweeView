@@ -9,14 +9,22 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name="me.relex.photodraweeviewsample.MainActivity"
-            android:label="@string/app_name">
+            android:name=".SingleActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ViewPagerActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"/>
+
+
     </application>
 
 </manifest>

@@ -20,7 +20,9 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:22.1.0'
-    compile 'com.android.support:support-v4:22.1.0'
+    compile 'com.android.support:appcompat-v7:22.1.1'
+    compile 'com.android.support:support-v4:22.1.1'
+    compile 'me.relex:circleindicator:1.1.3@aar'
+
     compile project(':photodraweeview')
 }

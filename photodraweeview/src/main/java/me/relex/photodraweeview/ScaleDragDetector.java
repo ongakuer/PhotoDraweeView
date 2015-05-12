@@ -72,6 +72,10 @@ public class ScaleDragDetector implements ScaleGestureDetector.OnScaleGestureLis
         return mScaleDetector.isInProgress();
     }
 
+    public boolean isDragging() {
+        return mIsDragging;
+    }
+
     private float getActiveX(MotionEvent ev) {
         try {
             return MotionEventCompat.getX(ev, mActivePointerIndex);
