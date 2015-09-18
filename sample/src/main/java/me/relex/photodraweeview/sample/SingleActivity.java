@@ -1,4 +1,4 @@
-package me.relex.photodraweeviewsample;
+package me.relex.photodraweeview.sample;
 
 import android.content.Intent;
 import android.graphics.drawable.Animatable;

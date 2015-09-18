@@ -14,7 +14,7 @@
         app:navigationIcon="@drawable/abc_ic_ab_back_mtrl_am_alpha"/>
 
 
-    <me.relex.photodraweeviewsample.MultiTouchViewPager
+    <me.relex.photodraweeview.sample.MultiTouchViewPager
         android:id="@+id/view_pager"
         android:layout_marginTop="?actionBarSize"
         android:layout_width="match_parent"

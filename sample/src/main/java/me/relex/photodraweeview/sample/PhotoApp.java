@@ -1,4 +1,4 @@
-package me.relex.photodraweeviewsample;
+package me.relex.photodraweeview.sample;
 
 import android.app.Application;
 import com.facebook.drawee.backends.pipeline.Fresco;
