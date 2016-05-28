@@ -2,6 +2,19 @@
 
 [PhotoView](https://github.com/chrisbanes/PhotoView) For [Fresco](https://github.com/facebook/fresco)
 
+![PhotoDraweeView](/screenshot.gif)
+
+
+
+Gradle
+------------
+```groovy
+dependencies {
+    compile 'com.facebook.fresco:fresco:0.10.0'
+    compile 'me.relex:photodraweeview:1.0.0@aar'
+}
+```
+
 
 Usage
 --------
@@ -24,10 +37,8 @@ mPhotoDraweeView.setController(controller.build());
 ```
 
 
-
-![PhotoDraweeView](/screenshot.gif)
-
-
+License
+--------
 ```
 Copyright 2015-2016 Relex
 
