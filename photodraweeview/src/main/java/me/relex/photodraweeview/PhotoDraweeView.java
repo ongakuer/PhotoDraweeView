@@ -2,16 +2,25 @@ package me.relex.photodraweeview;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.drawable.Animatable;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.controller.BaseControllerListener;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
+import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.image.ImageInfo;
 
 public class PhotoDraweeView extends SimpleDraweeView implements IAttacher {
 
     private Attacher mAttacher;
+
+    private boolean mEnableDraweeMatrix = true;
 
     public PhotoDraweeView(Context context, GenericDraweeHierarchy hierarchy) {
         super(context, hierarchy);
@@ -46,7 +55,9 @@ public class PhotoDraweeView extends SimpleDraweeView implements IAttacher {
 
     @Override protected void onDraw(@NonNull Canvas canvas) {
         int saveCount = canvas.save();
-        canvas.concat(mAttacher.getDrawMatrix());
+        if (mEnableDraweeMatrix) {
+            canvas.concat(mAttacher.getDrawMatrix());
+        }
         super.onDraw(canvas);
         canvas.restoreToCount(saveCount);
     }
@@ -139,5 +150,56 @@ public class PhotoDraweeView extends SimpleDraweeView implements IAttacher {
 
     @Override public void update(int imageInfoWidth, int imageInfoHeight) {
         mAttacher.update(imageInfoWidth, imageInfoHeight);
+    }
+
+    public boolean isEnableDraweeMatrix() {
+        return mEnableDraweeMatrix;
+    }
+
+    public void setEnableDraweeMatrix(boolean enableDraweeMatrix) {
+        mEnableDraweeMatrix = enableDraweeMatrix;
+    }
+
+    public void setPhotoUri(Uri uri) {
+        setPhotoUri(uri, null);
+    }
+
+    public void setPhotoUri(Uri uri, @Nullable Context context) {
+        mEnableDraweeMatrix = false;
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setCallerContext(context)
+                .setUri(uri)
+                .setOldController(getController())
+                .setControllerListener(new BaseControllerListener<ImageInfo>() {
+                    @Override public void onFailure(String id, Throwable throwable) {
+                        super.onFailure(id, throwable);
+                        mEnableDraweeMatrix = false;
+                    }
+
+                    @Override public void onFinalImageSet(String id, ImageInfo imageInfo,
+                            Animatable animatable) {
+                        super.onFinalImageSet(id, imageInfo, animatable);
+                        mEnableDraweeMatrix = true;
+                        if (imageInfo != null) {
+                            update(imageInfo.getWidth(), imageInfo.getHeight());
+                        }
+                    }
+
+                    @Override
+                    public void onIntermediateImageFailed(String id, Throwable throwable) {
+                        super.onIntermediateImageFailed(id, throwable);
+                        mEnableDraweeMatrix = false;
+                    }
+
+                    @Override public void onIntermediateImageSet(String id, ImageInfo imageInfo) {
+                        super.onIntermediateImageSet(id, imageInfo);
+                        mEnableDraweeMatrix = true;
+                        if (imageInfo != null) {
+                            update(imageInfo.getWidth(), imageInfo.getHeight());
+                        }
+                    }
+                })
+                .build();
+        setController(controller);
     }
 }

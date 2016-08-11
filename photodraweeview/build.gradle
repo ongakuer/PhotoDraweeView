@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 
-version = "1.0.0"
+version = "1.1.0"
+def int version_code = 110
 
 android {
     compileSdkVersion 23
@@ -9,7 +10,7 @@ android {
     defaultConfig {
         minSdkVersion 14
         //targetSdkVersion 23
-        versionCode 100
+        versionCode version_code
         versionName version
     }
     buildTypes {
@@ -21,7 +22,7 @@ android {
 }
 
 dependencies {
-    provided 'com.facebook.fresco:fresco:0.10.0'
+    provided 'com.facebook.fresco:fresco:0.12.0'
 }
 
 //apply from: "upload-jcenter.gradle"

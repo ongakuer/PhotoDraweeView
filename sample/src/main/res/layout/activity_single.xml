@@ -17,6 +17,13 @@
         android:id="@+id/photo_drawee_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1"
+        app:failureImage="@drawable/ic_error"
+        app:failureImageScaleType="centerInside"
+        app:placeholderImage="@drawable/ic_placeholder"
+        app:placeholderImageScaleType="fitCenter"
+        app:progressBarAutoRotateInterval="1000"
+        app:progressBarImage="@drawable/ic_loading"
+        app:progressBarImageScaleType="centerInside"/>
 
 </LinearLayout>

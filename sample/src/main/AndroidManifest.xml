@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="me.relex.photodraweeview.sample">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
     <application
         android:name=".PhotoApp"
         android:allowBackup="true"

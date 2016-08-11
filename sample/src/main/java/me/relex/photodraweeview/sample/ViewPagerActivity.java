@@ -1,5 +1,7 @@
 package me.relex.photodraweeview.sample;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Animatable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +18,10 @@ import me.relex.circleindicator.CircleIndicator;
 import me.relex.photodraweeview.PhotoDraweeView;
 
 public class ViewPagerActivity extends AppCompatActivity {
+
+    public static void startActivity(Context context) {
+        context.startActivity(new Intent(context, ViewPagerActivity.class));
+    }
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
