@@ -112,6 +112,11 @@ public class PhotoDraweeView extends SimpleDraweeView implements IAttacher {
         mAttacher.setScale(scale, focalX, focalY, animate);
     }
 
+    @Override
+    public void setOrientation(int orientation) {
+        mAttacher.setOrientation(orientation);
+    }
+
     @Override public void setZoomTransitionDuration(long duration) {
         mAttacher.setZoomTransitionDuration(duration);
     }
@@ -177,7 +182,7 @@ public class PhotoDraweeView extends SimpleDraweeView implements IAttacher {
                     }
 
                     @Override public void onFinalImageSet(String id, ImageInfo imageInfo,
-                            Animatable animatable) {
+                                                          Animatable animatable) {
                         super.onFinalImageSet(id, imageInfo, animatable);
                         mEnableDraweeMatrix = true;
                         if (imageInfo != null) {

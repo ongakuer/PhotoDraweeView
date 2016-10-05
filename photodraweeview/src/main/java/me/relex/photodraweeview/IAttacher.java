@@ -48,6 +48,8 @@ public interface IAttacher {
 
     void setScale(float scale, float focalX, float focalY, boolean animate);
 
+    void setOrientation(int orientation);
+
     void setZoomTransitionDuration(long duration);
 
     void setAllowParentInterceptOnEdge(boolean allow);
@@ -56,7 +58,7 @@ public interface IAttacher {
 
     void setOnScaleChangeListener(OnScaleChangeListener listener);
 
-   void setOnLongClickListener(View.OnLongClickListener listener);
+    void setOnLongClickListener(View.OnLongClickListener listener);
 
     void setOnPhotoTapListener(OnPhotoTapListener listener);
 
