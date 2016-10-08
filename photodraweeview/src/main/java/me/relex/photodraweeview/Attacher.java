@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewParent;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
+import android.widget.LinearLayout;
 import com.facebook.drawee.drawable.ScalingUtils;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.view.DraweeView;
@@ -25,6 +26,10 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
     private static final int EDGE_LEFT = 0;
     private static final int EDGE_RIGHT = 1;
     private static final int EDGE_BOTH = 2;
+    private static final int EDGE_TOP = 0;
+    private static final int EDGE_BOTTOM = 1;
+
+    private int mOrientation = LinearLayout.HORIZONTAL;
 
     private final float[] mMatrixValues = new float[9];
     private final RectF mDisplayRect = new RectF();
@@ -40,7 +45,8 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
 
     private boolean mBlockParentIntercept = false;
     private boolean mAllowParentInterceptOnEdge = true;
-    private int mScrollEdge = EDGE_BOTH;
+    private int mScrollEdgeX = EDGE_BOTH;
+    private int mScrollEdgeY = EDGE_BOTH;
 
     private final Matrix mMatrix = new Matrix();
     private int mImageInfoHeight = -1, mImageInfoWidth = -1;
@@ -142,6 +148,11 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
             mMatrix.setScale(scale, scale, focalX, focalY);
             checkMatrixAndInvalidate();
         }
+    }
+
+    @Override
+    public void setOrientation(int orientation) {
+        mOrientation = orientation;
     }
 
     @Override public void setZoomTransitionDuration(long duration) {
@@ -256,23 +267,28 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
 
         if (height <= (float) viewHeight) {
             deltaY = (viewHeight - height) / 2 - rect.top;
+            mScrollEdgeY = EDGE_BOTH;
         } else if (rect.top > 0.0F) {
             deltaY = -rect.top;
+            mScrollEdgeY = EDGE_TOP;
         } else if (rect.bottom < (float) viewHeight) {
             deltaY = viewHeight - rect.bottom;
+            mScrollEdgeY = EDGE_BOTTOM;
+        } else {
+            mScrollEdgeY = EDGE_NONE;
         }
         int viewWidth = getViewWidth();
         if (width <= viewWidth) {
             deltaX = (viewWidth - width) / 2 - rect.left;
-            mScrollEdge = EDGE_BOTH;
+            mScrollEdgeX = EDGE_BOTH;
         } else if (rect.left > 0) {
             deltaX = -rect.left;
-            mScrollEdge = EDGE_LEFT;
+            mScrollEdgeX = EDGE_LEFT;
         } else if (rect.right < viewWidth) {
             deltaX = viewWidth - rect.right;
-            mScrollEdge = EDGE_RIGHT;
+            mScrollEdgeX = EDGE_RIGHT;
         } else {
-            mScrollEdge = EDGE_NONE;
+            mScrollEdgeX = EDGE_NONE;
         }
 
         mMatrix.postTranslate(deltaX, deltaY);
@@ -349,13 +365,18 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
             if (parent == null) {
                 return;
             }
-
             if (mAllowParentInterceptOnEdge
                     && !mScaleDragDetector.isScaling()
                     && !mBlockParentIntercept) {
-                if (mScrollEdge == EDGE_BOTH || (mScrollEdge == EDGE_LEFT && dx >= 1f) || (
-                        mScrollEdge == EDGE_RIGHT
-                                && dx <= -1f)) {
+                if ( mOrientation == LinearLayout.HORIZONTAL &&
+                        (mScrollEdgeX == EDGE_BOTH
+                                || (mScrollEdgeX == EDGE_LEFT && dx >= 1f)
+                                || (mScrollEdgeX == EDGE_RIGHT && dx <= -1f))) {
+                    parent.requestDisallowInterceptTouchEvent(false);
+                }else if ( mOrientation == LinearLayout.VERTICAL &&
+                        (mScrollEdgeY == EDGE_BOTH
+                                || (mScrollEdgeY == EDGE_TOP && dy >= 1f)
+                                || (mScrollEdgeY == EDGE_BOTTOM && dy <= -1f))) {
                     parent.requestDisallowInterceptTouchEvent(false);
                 }
             } else {
@@ -419,7 +440,7 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
         private final float mZoomStart, mZoomEnd;
 
         public AnimatedZoomRunnable(final float currentZoom, final float targetZoom,
-                final float focalX, final float focalY) {
+                                    final float focalX, final float focalY) {
             mFocalX = focalX;
             mFocalY = focalY;
             mStartTime = System.currentTimeMillis();
