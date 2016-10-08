@@ -10,7 +10,7 @@
 ```groovy
 dependencies {
     compile 'com.facebook.fresco:fresco:0.14.1'
-    compile 'me.relex:photodraweeview:1.1.0'
+    compile 'me.relex:photodraweeview:1.1.1'
 }
 ```
 
@@ -48,6 +48,9 @@ mPhotoDraweeView.setController(controller.build());
 
 
 ##ChangeLog
+
+##### 1.1.1  (2016-10-08)
+* Add ```setOrientation``` method, support edge scroll in RecyclerView. ([@PureDark](https://github.com/PureDark))
 
 ##### 1.1.0  (2016-08-11)
 * Add ```setPhotoUri``` method
