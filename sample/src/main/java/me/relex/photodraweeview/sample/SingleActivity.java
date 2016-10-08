@@ -57,6 +57,9 @@ public class SingleActivity extends AppCompatActivity {
                     case R.id.view_pager:
                         ViewPagerActivity.startActivity(SingleActivity.this);
                         break;
+                    case R.id.recycler_view:
+                        RecyclerViewActivity.startActivity(SingleActivity.this);
+                        break;
                 }
 
                 return true;

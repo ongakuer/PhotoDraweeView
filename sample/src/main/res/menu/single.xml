@@ -31,5 +31,10 @@
         android:title="@string/view_pager"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/recycler_view"
+        android:title="@string/recycler_view"
+        app:showAsAction="never"/>
+
 
 </menu>

@@ -48,7 +48,7 @@ public interface IAttacher {
 
     void setScale(float scale, float focalX, float focalY, boolean animate);
 
-    void setOrientation(int orientation);
+    void setOrientation(@Attacher.OrientationMode int orientation);
 
     void setZoomTransitionDuration(long duration);
 

@@ -3,6 +3,7 @@
     <string name="default_image">Default Image</string>
     <string name="failure_image">Failure Image</string>
     <string name="view_pager">ViewPager</string>
+    <string name="recycler_view">RecyclerView</string>
 
 
 </resources>

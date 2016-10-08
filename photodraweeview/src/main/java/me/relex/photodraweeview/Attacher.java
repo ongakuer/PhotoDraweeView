@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.os.Build;
+import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v4.view.MotionEventCompat;
@@ -14,22 +15,28 @@ import android.view.View;
 import android.view.ViewParent;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
-import android.widget.LinearLayout;
 import com.facebook.drawee.drawable.ScalingUtils;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.view.DraweeView;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 
 public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGestureListener {
 
     private static final int EDGE_NONE = -1;
-    private static final int EDGE_LEFT = 0;
-    private static final int EDGE_RIGHT = 1;
+    private static final int EDGE_LEFT = 0, EDGE_TOP = 0;
+    private static final int EDGE_RIGHT = 1, EDGE_BOTTOM = 1;
     private static final int EDGE_BOTH = 2;
-    private static final int EDGE_TOP = 0;
-    private static final int EDGE_BOTTOM = 1;
 
-    private int mOrientation = LinearLayout.HORIZONTAL;
+    @IntDef({ HORIZONTAL, VERTICAL }) @Retention(RetentionPolicy.SOURCE)
+    public @interface OrientationMode {
+    }
+
+    public static final int HORIZONTAL = 0;
+    public static final int VERTICAL = 1;
+
+    private int mOrientation = HORIZONTAL;
 
     private final float[] mMatrixValues = new float[9];
     private final RectF mDisplayRect = new RectF();
@@ -91,15 +98,11 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
         return mMinScale;
     }
 
-    @Override
-
-    public float getMediumScale() {
+    @Override public float getMediumScale() {
         return mMidScale;
     }
 
-    @Override
-
-    public float getMaximumScale() {
+    @Override public float getMaximumScale() {
         return mMaxScale;
     }
 
@@ -150,8 +153,7 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
         }
     }
 
-    @Override
-    public void setOrientation(int orientation) {
+    @Override public void setOrientation(@OrientationMode int orientation) {
         mOrientation = orientation;
     }
 
@@ -368,15 +370,11 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
             if (mAllowParentInterceptOnEdge
                     && !mScaleDragDetector.isScaling()
                     && !mBlockParentIntercept) {
-                if ( mOrientation == LinearLayout.HORIZONTAL &&
-                        (mScrollEdgeX == EDGE_BOTH
-                                || (mScrollEdgeX == EDGE_LEFT && dx >= 1f)
-                                || (mScrollEdgeX == EDGE_RIGHT && dx <= -1f))) {
+                if (mOrientation == HORIZONTAL && (mScrollEdgeX == EDGE_BOTH || (mScrollEdgeX
+                        == EDGE_LEFT && dx >= 1f) || (mScrollEdgeX == EDGE_RIGHT && dx <= -1f))) {
                     parent.requestDisallowInterceptTouchEvent(false);
-                }else if ( mOrientation == LinearLayout.VERTICAL &&
-                        (mScrollEdgeY == EDGE_BOTH
-                                || (mScrollEdgeY == EDGE_TOP && dy >= 1f)
-                                || (mScrollEdgeY == EDGE_BOTTOM && dy <= -1f))) {
+                } else if (mOrientation == VERTICAL && (mScrollEdgeY == EDGE_BOTH || (mScrollEdgeY
+                        == EDGE_TOP && dy >= 1f) || (mScrollEdgeY == EDGE_BOTTOM && dy <= -1f))) {
                     parent.requestDisallowInterceptTouchEvent(false);
                 }
             } else {
@@ -440,7 +438,7 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
         private final float mZoomStart, mZoomEnd;
 
         public AnimatedZoomRunnable(final float currentZoom, final float targetZoom,
-                                    final float focalX, final float focalY) {
+                final float focalX, final float focalY) {
             mFocalX = focalX;
             mFocalY = focalY;
             mStartTime = System.currentTimeMillis();

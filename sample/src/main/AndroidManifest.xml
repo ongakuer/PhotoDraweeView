@@ -26,6 +26,10 @@
             android:name=".ViewPagerActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"/>
+        <activity
+            android:name=".RecyclerViewActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"/>
 
 
     </application>

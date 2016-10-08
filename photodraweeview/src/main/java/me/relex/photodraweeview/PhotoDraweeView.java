@@ -49,7 +49,6 @@ public class PhotoDraweeView extends SimpleDraweeView implements IAttacher {
     }
 
     @Override public boolean onTouchEvent(MotionEvent event) {
-
         return super.onTouchEvent(event);
     }
 
@@ -112,8 +111,7 @@ public class PhotoDraweeView extends SimpleDraweeView implements IAttacher {
         mAttacher.setScale(scale, focalX, focalY, animate);
     }
 
-    @Override
-    public void setOrientation(int orientation) {
+    @Override public void setOrientation(@Attacher.OrientationMode int orientation) {
         mAttacher.setOrientation(orientation);
     }
 
@@ -182,7 +180,7 @@ public class PhotoDraweeView extends SimpleDraweeView implements IAttacher {
                     }
 
                     @Override public void onFinalImageSet(String id, ImageInfo imageInfo,
-                                                          Animatable animatable) {
+                            Animatable animatable) {
                         super.onFinalImageSet(id, imageInfo, animatable);
                         mEnableDraweeMatrix = true;
                         if (imageInfo != null) {
