@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="@string/view_pager"
-        app:navigationIcon="@drawable/abc_ic_ab_back_mtrl_am_alpha"/>
+        app:navigationIcon="@drawable/ic_toolbar_back"/>
 
 
     <me.relex.photodraweeview.sample.MultiTouchViewPager

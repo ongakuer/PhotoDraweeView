@@ -9,7 +9,7 @@
 ##Gradle
 ```groovy
 dependencies {
-    compile 'com.facebook.fresco:fresco:0.12.0'
+    compile 'com.facebook.fresco:fresco:0.14.1'
     compile 'me.relex:photodraweeview:1.1.0'
 }
 ```
