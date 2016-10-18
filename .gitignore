@@ -6,4 +6,11 @@
 /build
 /captures
 .idea
-.iml
+*.iml
+/.idea/compiler.xml
+/.idea/dictionaries/relex.xml
+/.idea/gradle.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
+sample.iml
