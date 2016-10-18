@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 
-version = "1.1.1"
-def int version_code = 111
+version = "1.1.2"
+def int version_code = 112
 
 android {
     compileSdkVersion 24

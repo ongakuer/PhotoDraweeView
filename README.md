@@ -2,6 +2,10 @@
 
 [PhotoView](https://github.com/chrisbanes/PhotoView) For [Fresco](https://github.com/facebook/fresco)
 
+
+[ ![Download](https://api.bintray.com/packages/ongakuer/maven/PhotoDraweeView/images/download.svg) ](https://bintray.com/ongakuer/maven/PhotoDraweeView/_latestVersion)
+
+
 ![PhotoDraweeView](/screenshot.gif)
 
 
@@ -10,7 +14,7 @@
 ```groovy
 dependencies {
     compile 'com.facebook.fresco:fresco:0.14.1'
-    compile 'me.relex:photodraweeview:1.1.1'
+    compile 'me.relex:photodraweeview:1.1.2'
 }
 ```
 
@@ -48,6 +52,11 @@ mPhotoDraweeView.setController(controller.build());
 
 
 ##ChangeLog
+
+##### 1.1.2  (2016-10-18)
+* Add ```getAttacher``` method 
+* Add Custom ScaleStepDoubleTapListener([@interchen](https://github.com/interchen))
+
 
 ##### 1.1.1  (2016-10-08)
 * Add ```setOrientation``` method, support edge scroll in RecyclerView. ([@PureDark](https://github.com/PureDark))
