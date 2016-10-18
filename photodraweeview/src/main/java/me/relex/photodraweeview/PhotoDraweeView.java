@@ -83,8 +83,18 @@ public class PhotoDraweeView extends SimpleDraweeView implements IAttacher {
         return mAttacher.getMaximumScale();
     }
 
+    @Override
+    public float getScaleStep() {
+        return mAttacher.getScaleStep();
+    }
+
     @Override public void setMinimumScale(float minimumScale) {
         mAttacher.setMinimumScale(minimumScale);
+    }
+
+    @Override
+    public void setScaleStep(float scaleStep) {
+        mAttacher.setScaleStep(scaleStep);
     }
 
     @Override public void setMediumScale(float mediumScale) {

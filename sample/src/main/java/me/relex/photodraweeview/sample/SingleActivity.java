@@ -21,6 +21,8 @@ public class SingleActivity extends AppCompatActivity {
 
         initToolbar();
         mPhotoDraweeView = (PhotoDraweeView) findViewById(R.id.photo_drawee_view);
+        mPhotoDraweeView.setMaximumScale(2.0f);
+        mPhotoDraweeView.setScaleStep(1.0f); // set scale step if you want to custom scale scheme
         mPhotoDraweeView.setPhotoUri(Uri.parse("res:///" + R.drawable.panda));
         mPhotoDraweeView.setOnPhotoTapListener(new OnPhotoTapListener() {
             @Override public void onPhotoTap(View view, float x, float y) {

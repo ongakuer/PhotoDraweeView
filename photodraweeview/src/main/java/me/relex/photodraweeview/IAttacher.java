@@ -23,10 +23,11 @@ import android.view.View;
 
 public interface IAttacher {
 
-    public static final float DEFAULT_MAX_SCALE = 3.0f;
-    public static final float DEFAULT_MID_SCALE = 1.75f;
-    public static final float DEFAULT_MIN_SCALE = 1.0f;
-    public static final long ZOOM_DURATION = 200L;
+    float DEFAULT_MAX_SCALE = 3.0f;
+    float DEFAULT_MID_SCALE = 1.75f;
+    float DEFAULT_MIN_SCALE = 1.0f;
+    float DEFAULT_SCALE_STEP = 0.0f; // default is zero. To use step, set more than zero
+    long ZOOM_DURATION = 200L;
 
     float getMinimumScale();
 
@@ -34,11 +35,15 @@ public interface IAttacher {
 
     float getMaximumScale();
 
+    float getScaleStep();
+
     void setMaximumScale(float maximumScale);
 
     void setMediumScale(float mediumScale);
 
     void setMinimumScale(float minimumScale);
+
+    void setScaleStep(float scaleStep);
 
     float getScale();
 
