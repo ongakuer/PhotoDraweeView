@@ -3,29 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <me.relex.photodraweeview.sample.MultiTouchViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="?colorPrimary"
+        android:background="#80000000"
         android:theme="@style/AppTheme"
+        app:navigationIcon="@drawable/ic_toolbar_back"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="@string/view_pager"
-        app:navigationIcon="@drawable/ic_toolbar_back"/>
-
-
-    <me.relex.photodraweeview.sample.MultiTouchViewPager
-        android:id="@+id/view_pager"
-        android:layout_marginTop="?actionBarSize"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        app:title="@string/view_pager"/>
 
 
     <me.relex.circleindicator.CircleIndicator
         android:id="@+id/indicator"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_width="match_parent"
-        android:layout_height="40dp"/>
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 
 </FrameLayout>

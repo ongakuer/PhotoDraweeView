@@ -1,8 +1,8 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">@color/background_material_dark</item>
-        <item name="colorPrimaryDark">@color/background_material_dark</item>
+        <item name="colorPrimary">@android:color/black</item>
+        <item name="colorPrimaryDark">@android:color/black</item>
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:windowBackground">@android:color/black</item>
     </style>
