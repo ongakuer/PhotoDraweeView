@@ -45,7 +45,6 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
     private float mMinScale = IAttacher.DEFAULT_MIN_SCALE;
     private float mMidScale = IAttacher.DEFAULT_MID_SCALE;
     private float mMaxScale = IAttacher.DEFAULT_MAX_SCALE;
-    private float mScaleStep = IAttacher.DEFAULT_SCALE_STEP;
     private long mZoomDuration = IAttacher.ZOOM_DURATION;
 
     private ScaleDragDetector mScaleDragDetector;
@@ -107,11 +106,6 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
         return mMaxScale;
     }
 
-    @Override
-    public float getScaleStep() {
-        return mScaleStep;
-    }
-
     @Override public void setMaximumScale(float maximumScale) {
         checkZoomLevels(mMinScale, mMidScale, maximumScale);
         mMaxScale = maximumScale;
@@ -125,14 +119,6 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
     @Override public void setMinimumScale(float minimumScale) {
         checkZoomLevels(minimumScale, mMidScale, mMaxScale);
         mMinScale = minimumScale;
-    }
-
-    @Override
-    public void setScaleStep(float scaleStep) {
-        if (scaleStep <= 0) {
-            throw new IllegalArgumentException("ScaleStep should be more than 0");
-        }
-        mScaleStep = scaleStep;
     }
 
     @Override public float getScale() {

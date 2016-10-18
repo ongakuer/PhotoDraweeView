@@ -36,5 +36,10 @@
         android:title="@string/recycler_view"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/scale_step"
+        android:title="@string/scale_step"
+        app:showAsAction="never"/>
+
 
 </menu>

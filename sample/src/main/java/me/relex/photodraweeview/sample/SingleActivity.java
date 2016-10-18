@@ -10,6 +10,7 @@ import android.widget.Toast;
 import me.relex.photodraweeview.OnPhotoTapListener;
 import me.relex.photodraweeview.OnViewTapListener;
 import me.relex.photodraweeview.PhotoDraweeView;
+import me.relex.photodraweeview.sample.gestures.ScaleStepDoubleTapListener;
 
 public class SingleActivity extends AppCompatActivity {
 
@@ -21,8 +22,6 @@ public class SingleActivity extends AppCompatActivity {
 
         initToolbar();
         mPhotoDraweeView = (PhotoDraweeView) findViewById(R.id.photo_drawee_view);
-        mPhotoDraweeView.setMaximumScale(2.0f);
-        mPhotoDraweeView.setScaleStep(1.0f); // set scale step if you want to custom scale scheme
         mPhotoDraweeView.setPhotoUri(Uri.parse("res:///" + R.drawable.panda));
         mPhotoDraweeView.setOnPhotoTapListener(new OnPhotoTapListener() {
             @Override public void onPhotoTap(View view, float x, float y) {
@@ -51,6 +50,7 @@ public class SingleActivity extends AppCompatActivity {
             @Override public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.default_image:
+                        mPhotoDraweeView.setOnDoubleTapListener(null);
                         mPhotoDraweeView.setPhotoUri(Uri.parse("res:///" + R.drawable.panda));
                         break;
                     case R.id.failure_image:
@@ -61,6 +61,11 @@ public class SingleActivity extends AppCompatActivity {
                         break;
                     case R.id.recycler_view:
                         RecyclerViewActivity.startActivity(SingleActivity.this);
+                        break;
+                    case R.id.scale_step:
+                        mPhotoDraweeView.setOnDoubleTapListener(
+                                new ScaleStepDoubleTapListener(mPhotoDraweeView.getAttacher(),
+                                        0.25f));
                         break;
                 }
 

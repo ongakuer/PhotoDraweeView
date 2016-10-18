@@ -8,7 +8,7 @@ import com.facebook.drawee.view.DraweeView;
 
 public class DefaultOnDoubleTapListener implements GestureDetector.OnDoubleTapListener {
 
-    private Attacher mAttacher;
+    protected Attacher mAttacher;
 
     public DefaultOnDoubleTapListener(Attacher attacher) {
         setPhotoDraweeViewAttacher(attacher);
@@ -56,28 +56,13 @@ public class DefaultOnDoubleTapListener implements GestureDetector.OnDoubleTapLi
             float x = event.getX();
             float y = event.getY();
 
-            boolean useStep = mAttacher.getScaleStep() > 0.0f;
-            if (useStep) {
-                // min, step, max
-                float newScale = scale;
-                if (scale < mAttacher.getMaximumScale()) {
-                    newScale += mAttacher.getScaleStep();
-                    if (newScale > mAttacher.getMaximumScale()) {
-                        newScale = mAttacher.getMaximumScale();
-                    }
-                } else {
-                    newScale = mAttacher.getMinimumScale();
-                }
-                mAttacher.setScale(newScale, x, y, true);
+            // min, mid, max
+            if (scale < mAttacher.getMediumScale()) {
+                mAttacher.setScale(mAttacher.getMediumScale(), x, y, true);
+            } else if (scale >= mAttacher.getMediumScale() && scale < mAttacher.getMaximumScale()) {
+                mAttacher.setScale(mAttacher.getMaximumScale(), x, y, true);
             } else {
-                // min, mid, max
-                if (scale < mAttacher.getMediumScale()) {
-                    mAttacher.setScale(mAttacher.getMediumScale(), x, y, true);
-                } else if (scale >= mAttacher.getMediumScale() && scale < mAttacher.getMaximumScale()) {
-                    mAttacher.setScale(mAttacher.getMaximumScale(), x, y, true);
-                } else {
-                    mAttacher.setScale(mAttacher.getMinimumScale(), x, y, true);
-                }
+                mAttacher.setScale(mAttacher.getMinimumScale(), x, y, true);
             }
         } catch (Exception e) {
             // Can sometimes happen when getX() and getY() is called
