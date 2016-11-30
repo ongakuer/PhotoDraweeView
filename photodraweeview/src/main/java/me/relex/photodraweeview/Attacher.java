@@ -252,6 +252,7 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
 
         if (checkMatrixBounds()) {
             draweeView.invalidate();
+            draweeView.getRootView().invalidate();
         }
     }
 
