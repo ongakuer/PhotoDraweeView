@@ -10,7 +10,7 @@
 
 
 
-##Gradle
+## Gradle
 ```groovy
 dependencies {
     compile 'com.facebook.fresco:fresco:1.0.1'
@@ -20,14 +20,14 @@ dependencies {
 
 
 
-##Usage
+## Usage
 ```java
 mPhotoDraweeView.setPhotoUri(Uri.parse("http://your.image.url"));
 ```
 
 
 
-#####Using the ControllerBuilder
+##### Using the ControllerBuilder
 ```java
 PipelineDraweeControllerBuilder controller = Fresco.newDraweeControllerBuilder();
 controller.setUri(URI);
@@ -46,12 +46,12 @@ mPhotoDraweeView.setController(controller.build());
 ```
 
 
-##[Issues With ViewGroups](https://github.com/chrisbanes/PhotoView#issues-with-viewgroups)
+## [Issues With ViewGroups](https://github.com/chrisbanes/PhotoView#issues-with-viewgroups)
 
 
 
 
-##ChangeLog
+## ChangeLog
 
 ##### 1.1.2  (2016-10-18)
 * Add ```getAttacher``` method 
@@ -68,7 +68,7 @@ mPhotoDraweeView.setController(controller.build());
 
 
 
-##License
+## License
 ```
 Copyright 2015-2016 Relex
 
