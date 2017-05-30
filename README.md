@@ -49,25 +49,6 @@ mPhotoDraweeView.setController(controller.build());
 ## [Issues With ViewGroups](https://github.com/chrisbanes/PhotoView#issues-with-viewgroups)
 
 
-
-
-## ChangeLog
-
-##### 1.1.2  (2016-10-18)
-* Add ```getAttacher``` method 
-* Add Custom ScaleStepDoubleTapListener([@interchen](https://github.com/interchen))
-
-
-##### 1.1.1  (2016-10-08)
-* Add ```setOrientation``` method, support edge scroll in RecyclerView. ([@PureDark](https://github.com/PureDark))
-
-##### 1.1.0  (2016-08-11)
-* Add ```setPhotoUri``` method
-* Fix ```failureImage``` ScaleType 
-
-
-
-
 ## License
 ```
 Copyright 2015-2016 Relex
