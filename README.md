@@ -13,8 +13,8 @@
 ## Gradle
 ```groovy
 dependencies {
-    compile 'com.facebook.fresco:fresco:1.0.1'
-    compile 'me.relex:photodraweeview:1.1.2'
+    compile 'com.facebook.fresco:fresco:1.3.0'
+    compile 'me.relex:photodraweeview:1.1.3'
 }
 ```
 
