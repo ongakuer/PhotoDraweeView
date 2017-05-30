@@ -31,6 +31,17 @@
             android:label="@string/app_name"
             android:launchMode="singleTop"/>
 
+        <activity
+            android:name=".SharedElementActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme"/>
+
+        <activity
+            android:name=".SharedElementLaunchedActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme"/>
+
 
     </application>
 

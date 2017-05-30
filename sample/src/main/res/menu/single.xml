@@ -41,5 +41,11 @@
         android:title="@string/scale_step"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/shared_element"
+        android:title="@string/shared_element"
+        app:showAsAction="never"/>
+
+
 
 </menu>

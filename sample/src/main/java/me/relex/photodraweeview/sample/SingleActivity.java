@@ -60,12 +60,16 @@ public class SingleActivity extends AppCompatActivity {
                         ViewPagerActivity.startActivity(SingleActivity.this);
                         break;
                     case R.id.recycler_view:
+
                         RecyclerViewActivity.startActivity(SingleActivity.this);
                         break;
                     case R.id.scale_step:
                         mPhotoDraweeView.setOnDoubleTapListener(
                                 new ScaleStepDoubleTapListener(mPhotoDraweeView.getAttacher(),
                                         0.25f));
+                        break;
+                    case R.id.shared_element:
+                        SharedElementActivity.startActivity(SingleActivity.this);
                         break;
                 }
 
