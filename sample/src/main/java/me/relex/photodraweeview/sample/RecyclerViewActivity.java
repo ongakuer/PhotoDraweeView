@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +31,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
                     }
                 });
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new DraweeAdapter());
     }
@@ -62,7 +62,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
         public DraweeViewHolder(View itemView) {
             super(itemView);
-            mPhotoDraweeView = (PhotoDraweeView) itemView.findViewById(R.id.photo_drawee_view);
+            mPhotoDraweeView = itemView.findViewById(R.id.photo_drawee_view);
             mPhotoDraweeView.setOrientation(Attacher.VERTICAL);
         }
 

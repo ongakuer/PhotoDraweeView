@@ -11,10 +11,20 @@
 
 
 ## Gradle
+
+###### AndroidX
 ```groovy
 dependencies {
-    compile 'com.facebook.fresco:fresco:1.3.0'
-    compile 'me.relex:photodraweeview:1.1.3'
+    implementation 'com.facebook.fresco:fresco:x.x.x' // (latest)
+    implementation 'me.relex:photodraweeview:2.0.0'
+}
+```
+
+###### Android Support Library
+```groovy
+dependencies {
+    implementation 'com.facebook.fresco:fresco:x.x.x' // (latest)
+    implementation 'me.relex:photodraweeview:1.1.3'
 }
 ```
 

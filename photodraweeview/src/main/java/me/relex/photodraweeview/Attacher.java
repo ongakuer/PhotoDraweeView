@@ -4,17 +4,16 @@ import android.content.Context;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.os.Build;
-import android.support.annotation.IntDef;
-import android.support.annotation.Nullable;
-import android.support.v4.view.GestureDetectorCompat;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.widget.ScrollerCompat;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
+import android.widget.OverScroller;
+import androidx.annotation.IntDef;
+import androidx.annotation.Nullable;
+import androidx.core.view.GestureDetectorCompat;
 import com.facebook.drawee.drawable.ScalingUtils;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.view.DraweeView;
@@ -82,6 +81,7 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
         mGestureDetector.setOnDoubleTapListener(new DefaultOnDoubleTapListener(this));
     }
 
+    @Override
     public void setOnDoubleTapListener(GestureDetector.OnDoubleTapListener newOnDoubleTapListener) {
         if (newOnDoubleTapListener != null) {
             this.mGestureDetector.setOnDoubleTapListener(newOnDoubleTapListener);
@@ -396,7 +396,8 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
     }
 
     @Override public boolean onTouch(View v, MotionEvent event) {
-        int action = MotionEventCompat.getActionMasked(event);
+
+        int action = event.getActionMasked();
         switch (action) {
             case MotionEvent.ACTION_DOWN: {
                 ViewParent parent = v.getParent();
@@ -404,16 +405,18 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
                     parent.requestDisallowInterceptTouchEvent(true);
                 }
                 cancelFling();
+                break;
             }
-            break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL: {
                 ViewParent parent = v.getParent();
                 if (parent != null) {
                     parent.requestDisallowInterceptTouchEvent(false);
                 }
+                break;
             }
-            break;
+            default:
+                break;
         }
 
         boolean wasScaling = mScaleDragDetector.isScaling();
@@ -474,11 +477,11 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
 
     private class FlingRunnable implements Runnable {
 
-        private final ScrollerCompat mScroller;
+        private final OverScroller mScroller;
         private int mCurrentX, mCurrentY;
 
         public FlingRunnable(Context context) {
-            mScroller = ScrollerCompat.create(context);
+            mScroller = new OverScroller(context);
         }
 
         public void cancelFling() {

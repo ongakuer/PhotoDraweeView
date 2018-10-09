@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.graphics.drawable.Animatable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import com.facebook.drawee.backends.pipeline.Fresco;
@@ -34,8 +34,8 @@ public class ViewPagerActivity extends AppCompatActivity {
                     }
                 });
 
-        CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
-        MultiTouchViewPager viewPager = (MultiTouchViewPager) findViewById(R.id.view_pager);
+        CircleIndicator indicator = findViewById(R.id.indicator);
+        MultiTouchViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(new DraweePagerAdapter());
         indicator.setViewPager(viewPager);
     }

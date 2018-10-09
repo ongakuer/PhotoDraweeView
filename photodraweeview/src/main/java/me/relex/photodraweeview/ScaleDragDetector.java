@@ -1,7 +1,6 @@
 package me.relex.photodraweeview;
 
 import android.content.Context;
-import android.support.v4.view.MotionEventCompat;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.VelocityTracker;
@@ -78,7 +77,7 @@ public class ScaleDragDetector implements ScaleGestureDetector.OnScaleGestureLis
 
     private float getActiveX(MotionEvent ev) {
         try {
-            return MotionEventCompat.getX(ev, mActivePointerIndex);
+            return ev.getX(mActivePointerIndex);
         } catch (Exception e) {
             return ev.getX();
         }
@@ -86,7 +85,7 @@ public class ScaleDragDetector implements ScaleGestureDetector.OnScaleGestureLis
 
     private float getActiveY(MotionEvent ev) {
         try {
-            return MotionEventCompat.getY(ev, mActivePointerIndex);
+            return ev.getY(mActivePointerIndex);
         } catch (Exception e) {
             return ev.getY();
         }
@@ -94,7 +93,7 @@ public class ScaleDragDetector implements ScaleGestureDetector.OnScaleGestureLis
 
     public boolean onTouchEvent(MotionEvent ev) {
         mScaleDetector.onTouchEvent(ev);
-        final int action = MotionEventCompat.getActionMasked(ev);
+        final int action = ev.getActionMasked();
         onTouchActivePointer(action, ev);
         onTouchDragEvent(action, ev);
         return true;
@@ -110,20 +109,21 @@ public class ScaleDragDetector implements ScaleGestureDetector.OnScaleGestureLis
                 mActivePointerId = INVALID_POINTER_ID;
                 break;
             case MotionEvent.ACTION_POINTER_UP:
-                final int pointerIndex = MotionEventCompat.getActionIndex(ev);
-                final int pointerId = MotionEventCompat.getPointerId(ev, pointerIndex);
+                final int pointerIndex = ev.getActionIndex();
+                final int pointerId = ev.getPointerId(pointerIndex);
                 if (pointerId == mActivePointerId) {
                     final int newPointerIndex = (pointerIndex == 0) ? 1 : 0;
-                    mActivePointerId = MotionEventCompat.getPointerId(ev, newPointerIndex);
-                    mLastTouchX = MotionEventCompat.getX(ev, newPointerIndex);
-                    mLastTouchY = MotionEventCompat.getY(ev, newPointerIndex);
+                    mActivePointerId = ev.getPointerId(newPointerIndex);
+                    mLastTouchX = ev.getX(newPointerIndex);
+                    mLastTouchY = ev.getY(newPointerIndex);
                 }
-
+                break;
+            default:
                 break;
         }
 
-        mActivePointerIndex = MotionEventCompat.findPointerIndex(ev,
-                mActivePointerId != INVALID_POINTER_ID ? mActivePointerId : 0);
+        mActivePointerIndex =
+                ev.findPointerIndex(mActivePointerId != INVALID_POINTER_ID ? mActivePointerId : 0);
     }
 
     private void onTouchDragEvent(int action, MotionEvent ev) {
@@ -192,6 +192,8 @@ public class ScaleDragDetector implements ScaleGestureDetector.OnScaleGestureLis
                 }
                 break;
             }
+            default:
+                break;
         }
     }
 }

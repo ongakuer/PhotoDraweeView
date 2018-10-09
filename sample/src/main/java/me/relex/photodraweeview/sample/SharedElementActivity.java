@@ -4,11 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.view.ViewCompat;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.List;
@@ -32,7 +32,7 @@ public class SharedElementActivity extends AppCompatActivity {
                     }
                 });
 
-        final SimpleDraweeView draweeView = (SimpleDraweeView) findViewById(R.id.photo_drawee_view);
+        final SimpleDraweeView draweeView = findViewById(R.id.photo_drawee_view);
         draweeView.setImageURI(Uri.parse("res:///" + R.drawable.panda));
         ViewCompat.setTransitionName(draweeView, SHARED_ELEMENT_NAME);
         draweeView.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +44,7 @@ public class SharedElementActivity extends AppCompatActivity {
 
                 // FIX BUG https://github.com/facebook/fresco/issues/1445
                 ActivityCompat.setExitSharedElementCallback(SharedElementActivity.this,
-                        new android.support.v4.app.SharedElementCallback() {
+                        new androidx.core.app.SharedElementCallback() {
                             @Override
                             public void onSharedElementEnd(List<String> sharedElementNames,
                                     List<View> sharedElements, List<View> sharedElementSnapshots) {

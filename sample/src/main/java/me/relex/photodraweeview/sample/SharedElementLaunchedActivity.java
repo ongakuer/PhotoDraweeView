@@ -4,10 +4,10 @@ import android.annotation.TargetApi;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.SharedElementCallback;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.SharedElementCallback;
+import androidx.core.view.ViewCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.transition.AutoTransition;
 import android.view.View;
 import android.view.Window;
@@ -21,7 +21,7 @@ public class SharedElementLaunchedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         initWindowTransitions();
         setContentView(R.layout.activity_shared_element_launched);
-        PhotoDraweeView draweeView = (PhotoDraweeView) findViewById(R.id.photo_drawee_view);
+        PhotoDraweeView draweeView = findViewById(R.id.photo_drawee_view);
         ViewCompat.setTransitionName(draweeView, SharedElementActivity.SHARED_ELEMENT_NAME);
 
         draweeView.setPhotoUri(Uri.parse("res:///" + R.drawable.panda));
