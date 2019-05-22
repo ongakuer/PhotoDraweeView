@@ -122,9 +122,7 @@ public class Attacher implements IAttacher, View.OnTouchListener, OnScaleDragGes
     }
 
     @Override public float getScale() {
-        return (float) Math.sqrt(
-                (float) Math.pow(getMatrixValue(mMatrix, Matrix.MSCALE_X), 2) + (float) Math.pow(
-                        getMatrixValue(mMatrix, Matrix.MSKEW_Y), 2));
+        return getMatrixValue(mMatrix, Matrix.MSCALE_X);
     }
 
     @Override public void setScale(float scale) {
