@@ -2,13 +2,10 @@
 
 [PhotoView](https://github.com/chrisbanes/PhotoView) For [Fresco](https://github.com/facebook/fresco)
 
-
-[ ![Download](https://api.bintray.com/packages/ongakuer/maven/PhotoDraweeView/images/download.svg) ](https://bintray.com/ongakuer/maven/PhotoDraweeView/_latestVersion)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/me.relex/photodraweeview/badge.svg)](https://maven-badges.herokuapp.com/maven-central/me.relex/photodraweeview)
 
 
 ![PhotoDraweeView](/screenshot.gif)
-
-
 
 ## Gradle
 
@@ -16,7 +13,7 @@
 ```groovy
 dependencies {
     implementation 'com.facebook.fresco:fresco:x.x.x' // (latest)
-    implementation 'me.relex:photodraweeview:2.0.0'
+    implementation 'me.relex:photodraweeview:2.1.0'
 }
 ```
 
