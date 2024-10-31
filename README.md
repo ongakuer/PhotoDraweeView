@@ -1,9 +1,12 @@
+
+**This project is no longer maintained. Recommend using [LargeDraweeView](https://github.com/ongakuer/LargeDraweeView)**
+
+
 # PhotoDraweeView
 
 [PhotoView](https://github.com/chrisbanes/PhotoView) For [Fresco](https://github.com/facebook/fresco)
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/me.relex/photodraweeview/badge.svg)](https://maven-badges.herokuapp.com/maven-central/me.relex/photodraweeview)
-
+![Maven Central Version](https://img.shields.io/maven-central/v/me.relex/photodraweeview)
 
 ![PhotoDraweeView](/screenshot.gif)
 
